@@ -108,6 +108,28 @@ npm run dev
 
 Open http://localhost:5173
 
+Open http://localhost:5173
+
+## 🚀 Cloud Deployment Instructions
+This prototype is architected for seamless cloud deployment. Since the SQLite database is intentionally tracked in Git, the backend requires absolutely no cloud storage volume provisioning—it works out-of-the-box.
+
+### 1. Deploying the Backend (Render.com)
+1. In Render, create a new **Web Service** from this GitHub repository.
+2. Set the **Root Directory** to: `backend`
+3. Set **Build Command** to: `pip install -r requirements.txt`
+4. Set **Start Command** to: `uvicorn app.main:app --host 0.0.0.0 --port 10000`
+5. In **Environment Variables**, add:
+   - `GEMINI_API_KEY` = `<your_key>`
+6. Deploy! Copy the `.onrender.com` backend URL once it's live.
+
+### 2. Deploying the Frontend (Vercel / Netlify)
+1. Import this GitHub repository into Vercel/Netlify.
+2. Set the **Root Directory** to: `frontend`
+3. The framework will auto-detect Vite. Let it keep the default build commands.
+4. **CRITICAL:** Add an Environment Variable mapping the frontend to your live Render backend:
+   - `VITE_API_URL` = `https://<your-render-backend-name>.onrender.com`
+5. Deploy! Your full-stack Graph AI app is now live to the world.
+
 ## Project Structure
 
 ```
